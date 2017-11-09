@@ -15,7 +15,7 @@
   <arg name="max_payload"  default="5.0"/>
   <arg name="prefix" default="ur5_" />
   <!-- robot model -->
-  <include file="$(find refills_scanner_robot_description)/launch/upload.launch">
+  <include file="$(find iai_donbot_description)/launch/upload.launch">
     <!-- <arg name="limited" value="$(arg limited)"/> -->
   </include>
   

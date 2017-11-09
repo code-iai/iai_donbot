@@ -1,6 +1,7 @@
 <launch>
     <!-- Start the EtherCAT controllers for the omnidirectional base -->
     <node name="omnidrive" launch-prefix="with_realtime" pkg="omni_ethercat" type="omni_ethercat" output="log"> 
+      <remap from="joint_states" to="base/joint_states"/> 
     <!--node name="omnidrive" pkg="omni_ethercat" type="omni_ethercat"-->
       <param name="speed" type="double" value="1.0" />
       <param name="acceleration" type="double" value="5.0" />
