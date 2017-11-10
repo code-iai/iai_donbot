@@ -18,13 +18,27 @@
   <include file="$(find iai_donbot_description)/launch/upload.launch">
     <!-- <arg name="limited" value="$(arg limited)"/> -->
   </include>
-  
-  <!-- ur common -->
-  <include file="$(find ur_modern_driver)/launch/ur_common.launch">
-    <arg name="prefix"  value="$(arg prefix)" />
-    <arg name="robot_ip" value="$(arg robot_ip)"/>
-    <arg name="min_payload"  value="$(arg min_payload)"/>
-    <arg name="max_payload"  value="$(arg max_payload)"/>
-  </include>
+
+  <arg name="servoj_time" default="0.008" />
+  <arg name="base_frame" default="$(arg prefix)base" />
+  <arg name="tool_frame" default="$(arg prefix)tool0_controller" />
+    
+  <arg name="max_velocity" default="10.0"/> <!-- [rad/s] -->
+
+  <!-- driver -->
+  <node name="ur_driver" pkg="ur_modern_driver" type="ur_driver" output="screen">
+  <!-- copy the specified IP address to be consistant with ROS-Industrial spec. -->
+    <remap from="joint_states" to="arm/joint_states"/>    
+    <param name="prefix" type="str" value="$(arg prefix)" />
+    <param name="robot_ip_address" type="str" value="$(arg robot_ip)" />
+    <param name="min_payload" type="double" value="$(arg min_payload)" />
+    <param name="max_payload" type="double" value="$(arg max_payload)" />
+    <param name="max_velocity" type="double" value="$(arg max_velocity)" />
+    <param name="servoj_time" type="double" value="$(arg servoj_time)" />
+    <param name="base_frame" type="str" value="$(arg base_frame)"/>
+    <param name="tool_frame" type="str" value="$(arg tool_frame)"/>
+  </node>
+
+
 
 </launch>
