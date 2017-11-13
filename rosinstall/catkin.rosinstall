@@ -1,0 +1,32 @@
+- git: 
+    local-name: iai_donbot
+    uri: https://github.com/code-iai/iai_donbot.git
+    version: master
+- git: 
+    local-name: iai_robot_drivers
+    uri: https://github.com/code-iai/iai_robot_drivers.git
+    version: master
+- git: 
+    local-name: iai_table_robot_description
+    uri: https://github.com/code-iai/iai_table_robot_description.git
+    version: master
+- git: 
+    local-name: ur_modern_driver
+    uri: https://github.com/code-iai/ur_modern_driver.git
+    version: master
+- git: 
+    local-name: iai_common_msgs
+    uri: https://github.com/code-iai/iai_common_msgs.git
+    version: master
+- git: 
+    local-name: iai_maps
+    uri: https://github.com/code-iai/iai_maps.git
+    version: master
+- git: 
+    local-name: iai_robots
+    uri: https://github.com/code-iai/iai_robots.git
+    version: master
+- git: 
+    local-name: universal_robot
+    uri: https://github.com/code-iai/universal_robot.git
+    version: master    
