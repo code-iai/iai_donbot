@@ -12,7 +12,7 @@
     version: master
 - git: 
     local-name: ur_modern_driver
-    uri: https://github.com/code-iai/ur_modern_driver.git
+    uri: https://github.com/nicolacastaman/ur_modern_driver.git
     version: master
 - git: 
     local-name: iai_common_msgs
@@ -28,5 +28,5 @@
     version: master
 - git: 
     local-name: universal_robot
-    uri: https://github.com/code-iai/universal_robot.git
+    uri: https://github.com/ros-industrial/universal_robot.git
     version: master    
