@@ -15,6 +15,10 @@
     uri: https://github.com/nicolacastaman/ur_modern_driver.git
     version: master
 - git: 
+    local-name: iai_boxy
+    uri: https://github.com/nicolacastaman/iai_boxy.git
+    version: master
+- git: 
     local-name: iai_common_msgs
     uri: https://github.com/code-iai/iai_common_msgs.git
     version: master
