@@ -1,0 +1,34 @@
+hardware_interface:
+  joints:
+    - odom_x_joint
+    - odom_y_joint
+    - odom_z_joint
+    - ur5_shoulder_pan_joint
+    - ur5_shoulder_lift_joint
+    - ur5_elbow_joint
+    - ur5_wrist_1_joint
+    - ur5_wrist_2_joint
+    - ur5_wrist_3_joint
+    - gripper_base_gripper_left_joint
+    - gripper_joint
+  sim_control_mode: 0
+generic_hw_control_loop:
+  loop_hz: &loop_rate 100
+  cycle_time_error_threshold: 0.015
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: *loop_rate
+whole_body_controller:
+  type: position_controllers/JointTrajectoryController  
+  joints:
+    - odom_x_joint
+    - odom_y_joint
+    - odom_z_joint
+    - ur5_shoulder_pan_joint
+    - ur5_shoulder_lift_joint
+    - ur5_elbow_joint
+    - ur5_wrist_1_joint
+    - ur5_wrist_2_joint
+    - ur5_wrist_3_joint
+    - gripper_base_gripper_left_joint
+    - gripper_joint

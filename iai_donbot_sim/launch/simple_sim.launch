@@ -1,0 +1,23 @@
+<launch>
+
+  <include file="$(find iai_donbot_description)/launch/upload.launch" />
+
+  <node pkg="iai_naive_kinematics_sim" type="simulator" 
+        name="donbot" output="screen">
+    <rosparam command="load"
+        file="$(find iai_donbot_sim)/config/sim_config.yaml" />
+    <remap from="~joint_states" to="/joint_states" />
+  </node>
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher"
+        name="robot_state_publisher" />
+
+  <node pkg="tf2_ros" type="buffer_server" name="tf2_buffer_server" />
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="fake_localization"
+        output="screen" args="0 0 0 0 0 0 map odom" />
+
+  <node pkg="tf2_ros" type="static_transform_publisher" name="fake_odometry"
+        output="screen" args="0 0 0 0 0 0 odom base_footprint" />
+
+</launch>
