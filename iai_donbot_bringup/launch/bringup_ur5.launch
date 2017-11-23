@@ -36,9 +36,18 @@
     <param name="max_velocity" type="double" value="$(arg max_velocity)" />
     <param name="servoj_time" type="double" value="$(arg servoj_time)" />
     <param name="base_frame" type="str" value="$(arg base_frame)"/>
+    <param name="use_ros_control" type="bool" value="False"/>
     <param name="tool_frame" type="str" value="$(arg tool_frame)"/>
   </node>
 
+  <!-- Load controller settings -->
+  <rosparam file="$(find iai_donbot_bringup)/config/ur5_controllers.yaml" command="load"/>
 
+  <!-- spawn controller manager -->
+  <node name="ros_control_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" args="joint_state_controller force_torque_sensor_controller vel_based_pos_traj_controller --shutdown-timeout 0.5" />
 
+  <!-- load other controller -->
+  <node name="ros_control_controller_manager" pkg="controller_manager" type="controller_manager" respawn="false"
+    output="screen" args="load pos_based_pos_traj_controller" />
 </launch>
