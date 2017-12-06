@@ -54,7 +54,9 @@
       output="screen" args="load pos_based_pos_traj_controller" />
   </group>
   <group unless="$(arg use_ros_control)">
-    <node name="fake_state_publisher" pkg="iai_donbot_bringup" type="fake_state_publisher" output="screen">
+    <node name="fake_state_publisher" pkg="iai_donbot_bringup" type="fake_state_publisher.py" output="screen"/>
   </group>
+
+  <include file="$(find iai_donbot_bringup)/launch/donbot_giskard.launch" />
 
 </launch>

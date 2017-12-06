@@ -1,6 +1,8 @@
 <launch>
   <include file="$(find iai_donbot_bringup)/launch/bringup_base.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/bringup_ur5.launch"/>
+  <include file="$(find iai_donbot_bringup)/launch/ptgrey_refills_fast2.launch"/>
+
 
 
   <!-- Bring together the different joint state messages -->
