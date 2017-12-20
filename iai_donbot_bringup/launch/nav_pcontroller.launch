@@ -31,8 +31,8 @@
 
       marker_size: 0.1                   # Rviz marker size [m]
 
-      xy_tolerance: 0.01                 # goal distance tolerance
-      th_tolerance: 0.01                 # goal rotation tolerance
+      xy_tolerance: 0.002                 # goal distance tolerance was at 0.01
+      th_tolerance: 0.002                 # goal rotation tolerance was at 0.01
 
       vel_lin_max: 0.1                   # maximum linear velocity [m/s]
       vel_ang_max: 0.2                  # maximum angular velocity [rad/s]
