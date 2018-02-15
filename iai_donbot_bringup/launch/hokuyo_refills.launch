@@ -34,7 +34,10 @@
     <param name="cluster" type="int" value="1"/>
     <param name="skip" type="int" value="1"/>
     <param name="error_limit" type="int" value="15"/>
-    <param name="frame_id" type="string" value="/laser_reference_back"/> 
+    <param name="frame_id" type="string" value="/laser_reference_back"/>
+    <param name="angle_min" type="double" value="-2.1"/>
+    <param name="angle_max" type="double" value="2.1"/>
+ 
 
     <remap from="scan" to="~/most_intense"/>
     <remap from="echoes" to="~/echoes"/>
