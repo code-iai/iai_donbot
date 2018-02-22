@@ -33,6 +33,7 @@ class TfWrapper(object):
 class NavpFaker(object):
     def __init__(self):
         self.max_vel = 0.5
+        self.freq = 0.2
         self.tf = TfWrapper()
         self.client = actionlib.SimpleActionClient('whole_body_controller/follow_joint_trajectory',
                                                    FollowJointTrajectoryAction)
@@ -76,17 +77,15 @@ class NavpFaker(object):
                 diff = max(diff, -self.max_vel*f)
             return last_p + (diff)
 
-        freq = 0.2
-
         while not np.allclose(np.array(goal_js), p.positions[:3]):
 
             p = JointTrajectoryPoint()
-            p.time_from_start = last_p.time_from_start + rospy.Duration(1*freq)
+            p.time_from_start = last_p.time_from_start + rospy.Duration(1*self.freq)
             p.positions = list(current_js.actual.positions)
 
-            p.positions[0] = next_p(goal_js[0], last_p.positions[0], freq)
-            p.positions[1] = next_p(goal_js[1], last_p.positions[1], freq)
-            p.positions[2] = next_p(goal_js[2], last_p.positions[2], freq)
+            p.positions[0] = next_p(goal_js[0], last_p.positions[0], self.freq)
+            p.positions[1] = next_p(goal_js[1], last_p.positions[1], self.freq)
+            p.positions[2] = next_p(goal_js[2], last_p.positions[2], self.freq)
 
             goal.trajectory.points.append(p)
             last_p = p
@@ -98,5 +97,5 @@ class NavpFaker(object):
 if __name__ == '__main__':
     rospy.init_node('navp_faker')
     muh = NavpFaker()
-    print('navp faker running.....')
+    rospy.loginfo('navp faker running.....')
     rospy.spin()

@@ -2,9 +2,6 @@
   <include file="$(find iai_donbot_bringup)/launch/bringup_base.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/bringup_ur5.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/ptgrey_refills_fast2.launch"/>
-  <include file="$(find product_counter)/launch/count_server.launch"/>
-
-
 
   <!-- Bring together the different joint state messages -->
   <node pkg="joint_state_publisher" type="joint_state_publisher"

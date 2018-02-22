@@ -52,6 +52,4 @@
     </node>
   </group>
 
-  <node pkg="barcode_tf_publisher" type="barcode_tf_publisher.py" name="barcode_tf_publisher" />
-
 </launch>
