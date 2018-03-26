@@ -9,7 +9,6 @@ hardware_interface:
     - ur5_wrist_1_joint
     - ur5_wrist_2_joint
     - ur5_wrist_3_joint
-    - gripper_base_gripper_left_joint
     - gripper_joint
   sim_control_mode: 0
 generic_hw_control_loop:
@@ -30,5 +29,4 @@ whole_body_controller:
     - ur5_wrist_1_joint
     - ur5_wrist_2_joint
     - ur5_wrist_3_joint
-    - gripper_base_gripper_left_joint
     - gripper_joint
