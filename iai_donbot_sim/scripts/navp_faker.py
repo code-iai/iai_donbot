@@ -104,11 +104,11 @@ class NavpFaker(object):
                 self.client.cancel_all_goals()
                 self.server.set_preempted(MoveBaseResult())
                 break
-        result = self.client.get_result()
-        if result.error_code == result.SUCCESSFUL:
-            self.server.set_succeeded(MoveBaseResult())
-        else:
-            self.server.set_preempted(MoveBaseResult())
+        # result = self.client.get_result()
+        # if result.error_code == result.SUCCESSFUL:
+        self.server.set_succeeded(MoveBaseResult())
+        # else:
+        #     self.server.set_preempted(MoveBaseResult())
 
 
 if __name__ == '__main__':
