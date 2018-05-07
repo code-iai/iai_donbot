@@ -3,7 +3,7 @@
     <param name="use_tf_static" value="false"/>
   </node>
   <include file="$(find iai_donbot_description)/launch/upload.launch"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find iai_shelves)/maps/shelf_map_door_opened.yaml" />
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find iai_shelves)/maps/refills_map.yaml" />
   <include file="$(find iai_donbot_bringup)/launch/amcl_omni.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/omnidrive.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/nav_pcontroller.launch"/>
