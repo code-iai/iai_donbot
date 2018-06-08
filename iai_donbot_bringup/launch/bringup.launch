@@ -21,5 +21,9 @@
     <param name="rate" value="120"/>
     <param name="use_gui" value="False"/>
 
+
+   <!-- Activate the diagnostics aggregator -->
+   <include file="$(find iai_donbot_bringup)/launch/aggregator.launch"/>
+
   </node>
 </launch>
