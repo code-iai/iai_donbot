@@ -1,0 +1,10 @@
+<launch>
+    <node name="refills_camera"  pkg="camera_aravis" type="camnode" output="screen"> 
+      <remap from="/camera" to="/refills_wrist_camera"/> 
+      <param name="AcquisitionFrameRate" type="double" value="10.0" />
+      <param name="Gain" type="double" value="31.0" />
+      <param name="ExposureTime" type="double" value="2000.0" />
+    </node>
+
+</launch>
+
