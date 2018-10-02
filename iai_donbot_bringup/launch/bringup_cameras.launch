@@ -1,0 +1,14 @@
+<launch>
+  <arg name="transmission_delay" default="375"/>
+
+  <include file="$(find iai_donbot_bringup)/launch/camera-12mp.launch">
+    <arg name="transmission_delay" value="$(arg transmission_delay)"/>
+  </include>
+
+  <include file="$(find iai_donbot_bringup)/launch/d435.launch">
+    <arg name="transmission_delay" value="$(arg transmission_delay)"/>
+  </include>
+
+  <include file="$(find iai_ringlight)/launch/IAI_ringlight_service.launch"/> 
+
+</launch>

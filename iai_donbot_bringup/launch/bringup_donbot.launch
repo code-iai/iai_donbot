@@ -1,7 +1,8 @@
 <launch>
-  <include file="$(find iai_donbot_bringup)/launch/bringup_base_with_map.launch"/>
+
+  <include file="$(find iai_donbot_bringup)/launch/bringup_base.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/bringup_ur5.launch"/>
-  <include file="$(find iai_donbot_bringup)/launch/ptgrey_refills_fast2.launch"/>
+  <include file="$(find iai_donbot_bringup)/launch/bringup_cameras.launch"/>
 
   <!-- Bring together the different joint state messages -->
   <node pkg="joint_state_publisher" type="joint_state_publisher"
@@ -21,9 +22,8 @@
     <param name="rate" value="120"/>
     <param name="use_gui" value="False"/>
 
-
-   <!-- Activate the diagnostics aggregator -->
-   <include file="$(find iai_donbot_bringup)/launch/aggregator.launch"/>
-
   </node>
+
+<!-- <include file="$(find iai_donbot_bringup)/launch/aggregator.launch"/> -->
+
 </launch>

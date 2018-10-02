@@ -1,6 +1,6 @@
 <launch>
   <node pkg="nav_pcontroller" type="nav_pcontroller" name="nav_pcontroller" output="screen">
-    <remap from="/cmd_vel" to="/base/cmd_vel_twist"/>
+    <remap from="/cmd_vel" to="/omnidrive/cmd_vel_twist"/>
     <remap from="~laser_1" to="/hokuyo_front/most_intense"/>
     <remap from="~laser_2" to="/hokuyo_back/most_intense"/>
     <remap from="~goal" to="/move_base_simple/goal"/>
