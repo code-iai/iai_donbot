@@ -1,6 +1,12 @@
 <launch>
+  <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" />
 
-  <include file="$(find iai_donbot_bringup)/launch/bringup_base.launch"/>
+  <param name="/use_sim_time" value="false"/>
+
+  <include file="$(find iai_donbot_bringup)/launch/bringup_base.launch" >
+    <arg name="navigation_map" value="$(arg navigation_map)" />
+  </include>
+
   <include file="$(find iai_donbot_bringup)/launch/bringup_ur5.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/bringup_cameras.launch"/>
 

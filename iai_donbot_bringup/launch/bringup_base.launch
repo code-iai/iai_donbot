@@ -1,10 +1,11 @@
 <launch>
+  <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" />
+
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
     <param name="use_tf_static" value="false"/>
   </node>
   <include file="$(find iai_donbot_description)/launch/upload.launch"/>
-  <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find iai_refills_lab)/maps/refills_lab.yaml" /> -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find iai_karlsruhe)/maps/mymap.yaml" />
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg navigation_map)" />
   <include file="$(find iai_donbot_bringup)/launch/amcl_omni.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/omnidrive.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/nav_pcontroller.launch"/>
