@@ -39,7 +39,7 @@
 
 
   <group ns="$(arg camera)">
-    <include file="$(find refills_first_review)/launch/includes/d435_nodelet.launch.xml">
+    <include file="$(find iai_donbot_bringup)/launch/includes/d435_nodelet.launch.xml">
       <arg name="serial_no"                value="$(arg serial_no)"/>
       <arg name="json_file_path"           value="$(arg json_file_path)"/>
 
