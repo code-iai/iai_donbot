@@ -15,9 +15,6 @@
 
   <node pkg="tf2_ros" type="buffer_server" name="tf2_buffer_server" />
 
-  <node pkg="tf2_ros" type="static_transform_publisher" name="fake_localization"
-        output="screen" args="0 0 0 0 0 0 map odom" />
-
-  <node pkg="iai_donbot_sim" type="navp_faker.py" name="nav_p" />
+  <include file="$(find iai_donbot_sim)/launch/fake_localization.launch" />
 
 </launch>

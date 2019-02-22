@@ -20,9 +20,6 @@ joint_state_controller:
 whole_body_controller:
   type: position_controllers/JointTrajectoryController  
   joints:
-    - odom_x_joint
-    - odom_y_joint
-    - odom_z_joint
     - ur5_shoulder_pan_joint
     - ur5_shoulder_lift_joint
     - ur5_elbow_joint
