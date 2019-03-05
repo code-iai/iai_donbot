@@ -1,6 +1,6 @@
 <launch>
   <arg name="serial_no"           default=""/>
-  <arg name="json_file_path"      default=""/>
+  <arg name="json_file_path"      default="$(find iai_donbot_bringup)/launch/includes/donbot_d435_settings.json"/>
   <arg name="camera"              default="rs_camera"/>
 
   <arg name="fisheye_width"       default="640"/>

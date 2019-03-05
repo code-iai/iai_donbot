@@ -11,7 +11,7 @@
     <remap from="~follow_joint_trajectory" to="/follow_joint_trajectory" />
     <remap from="~joint_trajectory_controller_state" to="/fake_state" />
 
-    <rosparam command="load" file="$(find refills_first_review)/config/donbot_qp_controller.yaml" />
+    <rosparam command="load" file="$(find iai_donbot_bringup)/config/donbot_qp_controller.yaml" />
   </node>
 
 </launch>

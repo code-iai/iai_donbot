@@ -1,20 +1,13 @@
 <launch>
   <arg name="transmission_delay" default="0.0"/>
 
-  <!-- ARAVIS camera driver -->
-  <node name="refills_wrist_camera"  pkg="camera_aravis" type="camnode" args="FLIR-0113E2E0" output="screen"> 
-    <remap from="/camera" to="/refills_wrist_camera"/> 
-    <param name="AcquisitionFrameRate" type="double" value="5.0" />
-    <param name="Gain" type="double" value="33.0" />
-    <param name="ExposureTime" type="double" value="1500.0" />
-    <param name="ExposureAuto" type="string" value="off" />
-    <param name="GainAuto" type="string" value="off" />
-    <param name="frame_id" type="string" value="camera_link" />
-    <param name="transmission_delay" type="double" value="$(arg transmission_delay)"/>
-  </node>
+  <!-- Spinnaker based camera driver -->
+  <include file="$(find spinnaker_sdk_camera_driver)/launch/iai_flir_12mp_donbot.launch"/>
+
 
   <!-- image_proc for compressed, b&w, etc -->
-  <node name="image_proc" pkg="image_proc" type="image_proc" respawn="false" required="true" output="screen" ns="/refills_wrist_camera"/>
+  <!--node name="image_proc" pkg="image_proc" type="image_proc" respawn="false" required="true" output="screen" ns="/refills_wrist_camera"/-->
+
 
   <!-- helper to decimate the image 2x2 -->
   <node pkg="nodelet" type="nodelet"
@@ -25,7 +18,7 @@
     <param name="decimation_x" type="int" value="2" />
     <param name="decimation_y" type="int" value="2" />
     <param name="interpolation" type="int" value="1" />
-    <remap from="camera/image_raw" to="/refills_wrist_camera/image_color"/>
+    <remap from="camera/image_raw" to="/refills_wrist_camera/image_raw"/>
     <remap from="camera/image_info" to="/refills_wrist_camera/camera_info"/>
     <remap from="camera_out/image_raw" to="/flir_small/image_color"/>
     <remap from="camera_out/image_info" to="/flir_small/camera_info"/>

@@ -57,6 +57,6 @@
     <node name="fake_state_publisher" pkg="iai_donbot_bringup" type="fake_state_publisher.py" output="screen"/>
   </group>
 
-  <include file="$(find iai_donbot_bringup)/launch/donbot_giskard.launch" />
+  <!-- <include file="$(find iai_donbot_bringup)/launch/donbot_giskard.launch" /> -->
 
 </launch>
