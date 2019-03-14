@@ -1,6 +1,6 @@
 <launch>
   <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" />
-  <arg name="with_aggregator" default="false" />
+  <arg name="with_aggregator" default="False" />
 
   <param name="/use_sim_time" value="false"/>
 
@@ -31,6 +31,6 @@
 
   </node>
 
-- <include file="$(find iai_donbot_bringup)/launch/aggregator.launch" if="(arg with_aggregator)" />
+  <include file="$(find iai_donbot_bringup)/launch/aggregator.launch" if="$(arg with_aggregator)" />
 
 </launch>
