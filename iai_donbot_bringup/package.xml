@@ -66,6 +66,7 @@
   <run_depend>map_server</run_depend>
   <run_depend>amcl</run_depend>
   <run_depend>nav_pcontroller</run_depend>
+  <run_depend>iai_refills_lab</run_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
