@@ -44,6 +44,7 @@
       p: 1.2                             # P controller value
 
       speed_filter_name: /nav_pcontroller
+      fail_timeout: 62.8
     </rosparam>
   </node>
 </launch>
