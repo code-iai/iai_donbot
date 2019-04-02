@@ -6,7 +6,7 @@
   <arg name="binning"		default="1"	doc="Binning for cameras, when changing from 2 to 1 cameras need to be unplugged and replugged"/>
   <arg name="color"		default="false"	doc="Should color images be used (only works on models that support color images)"/>
   <arg name="exp"               default="1300"	doc="Exposure setting for cameras"/>
-  <arg name="frames"            default="1"	doc="Numer of frames to save/view 0=ON"/>
+  <arg name="frames"            default="0"	doc="Numer of frames to save/view 0=ON"/>
   <arg name="live"              default="false"	doc="Show images on screen GUI"/>
   <arg name="live_grid"         default="false"	doc="Show images on screen GUI in a grid"/>
   <arg name="output"            default="screen"	doc="display output to screen or log file"/>
@@ -21,7 +21,7 @@
   <arg name="config_file"       default="$(find iai_donbot_bringup)/config/flir_params.yaml" doc="File specifying the parameters of the camera_array"/>
 
   <!-- load the acquisition node -->
-  <node pkg="spinnaker_sdk_camera_driver" type="acquisition_node" name="refills_wrist_camera_driver" output="$(arg output)"
+  <node pkg="spinnaker_sdk_camera_driver" type="acquisition_node" name="refills_wrist_camera_driver" output="$(arg output)" respawn="true"
 	args="">
 
     <!-- load the acquisition node parameters file.  Note any parameters provided in this file will 
