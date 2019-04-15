@@ -1,0 +1,9 @@
+<launch>
+  <arg name="navigation_map" default="$(find iai_maps)/maps/dm_karlsruhe_backroom_20190401.yaml" />
+
+  <param name="/use_sim_time" value="false"/>
+
+  <include file="$(find iai_donbot_bringup)/launch/bringup_donbot.launch" >
+    <arg name="navigation_map" value="$(arg navigation_map)" />
+  </include>
+</launch>
