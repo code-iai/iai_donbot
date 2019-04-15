@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="wsg_50" pkg="iai_naive_kinematics_sim" type="wsg_50_faker.py" output="screen" >
+    <param name='gripper_joint_name' type='string' value='gripper_joint'/>
+  </node>
+
+</launch>
