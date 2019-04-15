@@ -16,5 +16,7 @@
   <node pkg="tf2_ros" type="buffer_server" name="tf2_buffer_server" />
 
   <include file="$(find iai_donbot_sim)/launch/fake_localization.launch" />
+  
+  <include file="$(find iai_donbot_sim)/launch/wsg_50_for_kinematic_sim.launch" />
 
 </launch>
