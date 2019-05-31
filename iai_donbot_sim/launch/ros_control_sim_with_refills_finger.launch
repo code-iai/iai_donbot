@@ -14,7 +14,7 @@
   <node pkg="controller_manager" type="spawner" name="spawner" output="screen" args="joint_state_controller whole_body_controller/body gripper_controller --shutdown-timeout 0.5" />
 
   <node pkg="iai_naive_kinematics_sim" type="simulator" name="base_simulator" output="screen">
-    <rosparam command="load" file="$(find iai_pr2_sim)/config/naive_kinematics_sim_base.yaml" />
+    <rosparam command="load" file="$(find iai_donbot_sim)/config/naive_kinematics_sim_base.yaml" />
     <remap from="~joint_states" to="base/joint_states" />
     <remap from="~commands" to="/commands" />
   </node>
