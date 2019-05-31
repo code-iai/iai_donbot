@@ -1,5 +1,5 @@
 <launch>
-  <include file="$(find iai_donbot_description)/launch/upload.launch" />
+  <include file="$(find iai_donbot_description)/launch/upload_with_refills_finger.launch" />
 
   <include file="$(find iai_donbot_sim)/launch/wsg_50_for_kinematic_sim.launch" />
 
@@ -23,6 +23,7 @@
     <rosparam param="source_list">
     - base/joint_states
     - body/joint_states
+    - refills_finger/joint_states
     - r_gripper/joint_states
     - l_gripper/joint_states
     </rosparam>
@@ -48,5 +49,14 @@
   </node>
 
   <include file="$(find omni_pose_follower)/launch/omni_pose_follower.launch"/>
+
+  <include file="$(find iai_donbot_sim)/launch/refills_finger_hacks.launch"/>
+
+  <node pkg="giskardpy" type="trajectory_goal_splitter2.py" name="trajectory_goal_splitter" output="screen">
+    <remap from="/follow_joint_trajectory/base" to="/whole_body_controller/base/follow_joint_trajectory"/>
+    <remap from="/follow_joint_trajectory/body" to="/whole_body_controller/body/follow_joint_trajectory"/>
+    <remap from="/base/state" to="/whole_body_controller/base/state"/>
+    <remap from="/body/state" to="/whole_body_controller/body/state"/>
+  </node>
 
 </launch>
