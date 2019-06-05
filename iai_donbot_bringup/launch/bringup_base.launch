@@ -1,6 +1,5 @@
 <launch>
-  <!--arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" /-->
-  <arg name="navigation_map" default="$(find iai_maps)/maps/dm_karlsruhe_20190331.yaml" />
+  <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" />
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
     <param name="use_tf_static" value="false"/>
@@ -20,6 +19,7 @@
     <rosparam param="source_list">
     - base/joint_states
     - arm/joint_states
+    - wsg_50_driver/joint_states
     </rosparam>
     <rosparam param="zeros">
     'odom_x_joint': 0.0
