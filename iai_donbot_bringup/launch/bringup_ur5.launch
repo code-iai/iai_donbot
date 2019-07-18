@@ -16,9 +16,9 @@
   <arg name="prefix" default="ur5_" />
   <arg name="use_ros_control" default="False" />
   <!-- robot model -->
-  <include file="$(find iai_donbot_description)/launch/upload.launch">
+  <!-- <include file="$(find iai_donbot_description)/launch/upload.launch"> -->
     <!-- <arg name="limited" value="$(arg limited)"/> -->
-  </include>
+  <!-- </include> -->
 
   <arg name="servoj_time" default="0.008" />
   <arg name="base_frame" default="$(arg prefix)base" />

@@ -68,7 +68,7 @@ def publish_js():
 
     js = JointState()
     js.header = v.header
-    js.name = ['refills_finger']
+    js.name = ['refills_finger_joint']
     if goal_z[1] > 0:
         angle = -angle
     js.position = [angle]
