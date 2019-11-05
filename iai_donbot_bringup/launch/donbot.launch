@@ -1,0 +1,52 @@
+<launch>
+  <!--arg name="navigation_map" default="$(find iai_maps)/maps/dm_karlsruhe_20190331.yaml" /-->
+  <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" />  
+  <arg name="with_aggregator" default="False" />
+
+  <!-- urdf stuff -->
+  <arg name="urdf" default="$(find iai_donbot_description)/robots/iai_donbot2.xacro"/>
+  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
+  <arg name="kinematics_config" default="$(find iai_donbot_bringup)/config/ur5_calibration.yaml"/>
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg urdf)' transmission_hw_interface:=$(arg transmission_hw_interface)
+    kinematics_config:=$(arg kinematics_config)" />
+
+  <param name="/use_sim_time" value="false"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="use_tf_static" value="false"/>
+  </node>
+
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen">
+    <rosparam param="source_list">
+    - base/joint_states
+    - arm/joint_states
+    - wsg_50_driver/joint_states
+    </rosparam>
+    <rosparam param="zeros">
+    'odom_x_joint': 0.0
+    'odom_y_joint': 0.0
+    'odom_z_joint': 0.0
+    'gripper_base_gripper_left_joint': 0.0
+    'gripper_joint': 0.0
+    </rosparam>
+
+    <param name="rate" value="120"/>
+    <param name="use_gui" value="False"/>
+  </node>
+
+  <include file="$(find iai_donbot_bringup)/launch/base.launch" >
+    <arg name="standalone" value="false" />
+    <arg name="navigation_map" value="$(arg navigation_map)" />
+  </include>
+
+  <include file="$(find iai_donbot_bringup)/launch/ur5.launch" >
+    <arg name="standalone" value="false" />
+  </include>
+
+  <include file="$(find iai_donbot_bringup)/launch/cameras.launch"/>
+  <include file="$(find iai_donbot_bringup)/launch/gripper.launch"/>
+
+  <include file="$(find iai_donbot_bringup)/launch/aggregator.launch" if="$(arg with_aggregator)" />
+
+</launch>

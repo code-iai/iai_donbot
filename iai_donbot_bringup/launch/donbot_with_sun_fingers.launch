@@ -1,0 +1,11 @@
+<launch>
+
+  <arg name="urdf" default="$(find iai_donbot_description)/robots/iai_donbot2_with_refills_finger.xacro"/>
+
+  <include file="$(find iai_donbot_bringup)/launch/donbot.launch">
+    <arg name="urdf" value="$(arg urdf)"/>
+  </include>
+
+  <include file="$(find iai_donbot_sim)/launch/refills_finger_hacks.launch"/>
+
+</launch>
