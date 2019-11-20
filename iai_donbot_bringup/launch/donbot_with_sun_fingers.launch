@@ -2,7 +2,7 @@
 
   <arg name="urdf" default="$(find iai_donbot_description)/robots/iai_donbot2_with_refills_finger.xacro"/>
 
-  <include file="$(find iai_donbot_bringup)/launch/donbot.launch">
+  <include file="$(find iai_donbot_description)/launch/donbot.launch">
     <arg name="urdf" value="$(arg urdf)"/>
   </include>
 

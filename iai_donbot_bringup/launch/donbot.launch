@@ -3,15 +3,13 @@
   <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" />  
   <arg name="with_aggregator" default="False" />
 
-  <!-- urdf stuff -->
-  <arg name="urdf" default="$(find iai_donbot_description)/robots/iai_donbot2.xacro"/>
-  <arg name="transmission_hw_interface" default="hardware_interface/PositionJointInterface" />
-  <arg name="kinematics_config" default="$(find iai_donbot_bringup)/config/ur5_calibration.yaml"/>
-
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg urdf)' transmission_hw_interface:=$(arg transmission_hw_interface)
-    kinematics_config:=$(arg kinematics_config)" />
-
   <param name="/use_sim_time" value="false"/>
+
+  <arg name="urdf" default="$(find iai_donbot_description)/robots/iai_donbot2.xacro"/>
+  
+  <include file="$(find iai_donbot_description)/launch/upload.launch">
+    <arg name="urdf" value="$(arg urdf)"/>
+  </include>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
     <param name="use_tf_static" value="false"/>
