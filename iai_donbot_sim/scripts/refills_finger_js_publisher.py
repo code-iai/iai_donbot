@@ -56,25 +56,28 @@ def transform_vector(target_frame, vector):
 #     pub2.publish(p)
 
 def publish_js():
-    v = Vector3Stamped()
-    v.header.frame_id = 'map'
-    v.vector.z = -1
-    v = transform_vector('gripper_tool_frame', v)
-    g = np.array([v.vector.x, v.vector.y, v.vector.z])
-    g = g / np.linalg.norm(g)
-    goal_z = np.cross(g, [1,0,0])
-    goal_z = goal_z / np.linalg.norm(goal_z)
-    angle = np.arccos(np.array([0,0,1]).dot(goal_z))
+    try:
+        v = Vector3Stamped()
+        v.header.frame_id = 'map'
+        v.vector.z = -1
+        v = transform_vector('gripper_tool_frame', v)
+        g = np.array([v.vector.x, v.vector.y, v.vector.z])
+        g = g / np.linalg.norm(g)
+        goal_z = np.cross(g, [1,0,0])
+        goal_z = goal_z / np.linalg.norm(goal_z)
+        angle = np.arccos(np.array([0,0,1]).dot(goal_z))
 
-    js = JointState()
-    js.header = v.header
-    js.name = ['refills_finger_joint']
-    if goal_z[1] > 0:
-        angle = -angle
-    js.position = [angle]
-    js.velocity = [0]
-    js.effort = [0]
-    pub.publish(js)
+        js = JointState()
+        js.header = v.header
+        js.name = ['refills_finger_joint']
+        if goal_z[1] > 0:
+            angle = -angle
+        js.position = [angle]
+        js.velocity = [0]
+        js.effort = [0]
+        pub.publish(js)
+    except Exception as e:
+        rospy.logwarn('failed to published refills finger joint state: {}'.format(e))
     # pub_debug(goal_z)
 
 if __name__ == '__main__':
