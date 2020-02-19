@@ -25,7 +25,7 @@
 
     <include file="$(find iai_boxy_base_2)/launch/upload.launch"/>
 
-    <include file="find iai_donbot_bringup/launch/diagnostics.launch">
+    <include file="$(find iai_donbot_bringup)/launch/diagnostics.launch"/>
 
     <node name="base_voltage_watchdog" pkg="iai_donbot_bringup" output="screen" type="base_voltage_watchdog.py" />
   </group>
