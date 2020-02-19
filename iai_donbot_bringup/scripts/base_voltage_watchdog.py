@@ -7,12 +7,15 @@ Warning respectively error is send when the voltage is too low.
 
 __author__      = "Jeroen Schaefer"
 
+from std_msgs.msg import String
 import rospy
 from diagnostic_msgs.msg import DiagnosticArray
 from diagnostic_msgs.msg import DiagnosticStatus
 from diagnostic_msgs.msg import KeyValue
 
 timer = 0
+warn_thresh = 47
+err_thresh = 46
 
 def diagnostic_cb(msg):
     """
@@ -23,6 +26,9 @@ def diagnostic_cb(msg):
     :type msg: DiagnosticArray
     """
     global timer
+    global pub#type:rospy.Publisher
+    global warn_thresh
+    global err_thresh
 
     voltages = []
 
@@ -30,26 +36,38 @@ def diagnostic_cb(msg):
         if component.name == "/Other/omnidrive: boxy_omni_v1":
             for key in component.values: #type:KeyValue
                 if "bus voltage" in key.key:
-                    voltages.append(key.value)
+                    voltages.append(float(key.value))
 
     if len(voltages) > 0:
-        if (min(voltages) < 47) and (min(voltages) > 46):
+        min_voltage = min(voltages)
+        if (min_voltage < warn_thresh) and (min_voltage > err_thresh):
             timer += 1
-            if timer > 60:
-                rospy.loginfo("Voltage low. Please charge the batteries soon.")
+            if (timer >= 60):
+                rospy.loginfo("Voltage low. Please charge the batteries soon. Voltage is down to " + str(min_voltage) + "V.")
                 timer = 0
-        elif min(voltages) <= 46:
-            rospy.logerr("Voltage too low. Please charge the batteries.")
+            pub.publish("Voltage is " + str(min_voltage) + "V and therefore low.")
+        if (min_voltage <= err_thresh):
+            rospy.logerr("Voltage too low. Please charge the batteries. Voltage is down to " + str(min_voltage) + "V.")
+            pub.publish("Voltage is " + str(min_voltage) + "V and therefore critically low.")
+        if (min_voltage >= warn_thresh):
+            timer += 1
+            if (timer >= 300):
+                rospy.loginfo("Voltage of base is okay.")
+                timer = 0
+            pub.publish("Voltage is " + str(min_voltage) + "V and therefore okay.")
 
 
 def init():
     """
     Function to start the node and connect to the topic.
     """
+    global pub
+
     rospy.init_node("battery_voltage_watchdog")
     rospy.loginfo("Connecting battery voltage watchdog to diagnostics.")
 
     rospy.Subscriber("/diagnostics_agg", DiagnosticArray, diagnostic_cb)
+    pub = rospy.Publisher('battery_status', String, queue_size=10)
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
