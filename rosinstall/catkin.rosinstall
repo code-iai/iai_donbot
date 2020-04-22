@@ -30,3 +30,19 @@
     local-name: universal_robot
     uri: https://github.com/ros-industrial/universal_robot.git
     version: kinetic-devel
+- git:
+    local-name: reflexxes_type2
+    uri: https://github.com/code-iai/reflexxes_type2.git
+    version: master
+- git:
+    local-name: nav_pcontroller
+    uri: https://github.com/code-iai/nav_pcontroller
+    version: master
+- git:
+    local-name: spinnaker_sdk_camera_driver
+    uri: https://github.com/neufieldrobotics/spinnaker_sdk_camera_driver
+    version: master
+- git:
+    local-name: omni_teleop
+    uri: https://github.com/code-iai/omni_teleop.git
+    version: master
