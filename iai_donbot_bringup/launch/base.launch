@@ -1,7 +1,7 @@
 <launch>
   <arg name="standalone" default="true"/>
-  <!-- <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" /> -->
-  <arg name="navigation_map" default="$(find iai_maps)/maps/refills_integration_week.yaml" />
+  <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" />
+  <!-- <arg name="navigation_map" default="$(find iai_maps)/maps/refills_integration_week.yaml" /> -->
 
   <group if="$(eval arg('standalone') == true)">
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
