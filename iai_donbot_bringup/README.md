@@ -1,3 +1,9 @@
+# troubeshooting
+## power switches:
+- 1 ur5
+- 2 & 3 ethercat wheels
+- 4 homer
+
 # How to start marcos fingers
 
 ## setup fingers
