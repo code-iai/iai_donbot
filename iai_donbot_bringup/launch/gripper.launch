@@ -1,6 +1,6 @@
 <launch>
   <include file="$(find wsg_50_driver)/launch/wsg_50_tcp.launch">
-    <arg name="ip" value="192.168.102.63"/>
+    <arg name="ip" value="192.168.102.64"/>
     <arg name="grasping_force" value="20"/>
     <arg name="js_topic" value="~joint_states"/>
     <arg name="finger_joint_name" value="gripper_joint"/>

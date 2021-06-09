@@ -23,7 +23,6 @@
     - base/joint_states
     - arm/joint_states
     - wsg_50_driver/joint_states
-    - refills_finger/joint_states
     </rosparam>
     <rosparam param="zeros">
     'odom_x_joint': 0.0

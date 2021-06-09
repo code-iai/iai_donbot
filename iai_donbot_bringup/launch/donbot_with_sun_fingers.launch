@@ -5,7 +5,7 @@
   <include file="$(find iai_donbot_bringup)/launch/donbot.launch">
     <arg name="urdf" value="$(arg urdf)"/>
     <arg name="gripper" value="False"/>
-    <arg name="cameras" value="False"/>
+    <arg name="cameras" value="True"/>
   </include>
 
   <include file="$(find iai_donbot_sim)/launch/refills_finger_hacks.launch"/>
