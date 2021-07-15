@@ -1,7 +1,7 @@
 <launch>
   <arg name="standalone" default="true"/>
-  <!-- <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" /> -->
-  <arg name="navigation_map" default="$(find iai_maps)/maps/refills_integration_week.yaml" />
+  <arg name="navigation_map" default="$(find iai_refills_lab)/maps/refills_lab.yaml" />
+  <!-- <arg name="navigation_map" default="$(find iai_maps)/maps/refills_integration_week.yaml" /> -->
 
   <group if="$(eval arg('standalone') == true)">
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
@@ -23,7 +23,11 @@
 
     </node>
 
-    <include file="$(find iai_boxy_base_2)/launch/upload.launch"/>
+  <arg name="urdf" default="$(find iai_donbot_description)/robots/iai_donbot_with_refills_finger.urdf.xacro"/>
+
+  <include file="$(find iai_donbot_description)/launch/upload.launch">
+    <arg name="urdf" value="$(arg urdf)"/>
+  </include>
 
     <include file="$(find iai_donbot_bringup)/launch/diagnostics.launch"/>
 
@@ -37,8 +41,9 @@
   <include file="$(find iai_donbot_bringup)/launch/omnidrive.launch"/>
   <include file="$(find iai_donbot_bringup)/launch/hokuyo.launch"/>
   <include file="$(find omni_teleop)/launch/ds4_teleop.launch"/>
-  <include file="$(find iai_donbot_bringup)/launch/nav_pcontroller.launch"/>
+  <!-- <include file="$(find iai_donbot_bringup)/launch/nav_pcontroller.launch"/> -->
   <node name="fake_soft_runstop" pkg="iai_donbot_bringup" type="fake_runstop.sh"/>
-  <include file="$(find iai_donbot_bringup)/launch/omni_pose_follower.launch"/>
+  <!-- <include file="$(find iai_donbot_bringup)/launch/omni_pose_follower.launch"/> -->
+  <include file="$(find base_controller)/launch/base_controller_iai_donbot_real.launch"/>
 
 </launch>
