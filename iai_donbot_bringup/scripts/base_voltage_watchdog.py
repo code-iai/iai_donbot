@@ -15,12 +15,13 @@ from diagnostic_msgs.msg import KeyValue
 import csv
 import os.path
 import datetime
+import time
 
 timer = 0
 warn_thresh = 48
 err_thresh = 46
 # pub = []  #type:rospy.Publisher
-filename = "/home/refills/battery_info/voltage.csv"
+filename = "/home/jesch/battery_info/voltage.csv"
 write_file = True
 
 def diagnostic_cb(msg):
@@ -75,7 +76,9 @@ def diagnostic_cb(msg):
         
 
         if write_file:
-            ts = datetime.datetime.now().timestamp()
+            # ts = datetime.datetime.now().timestamp()
+            now = datetime.datetime.now()
+            ts = time.mktime(now.timetuple())
 
             with open(filename, "a") as csvfile:
                 csvwriter = csv.writer(csvfile)
