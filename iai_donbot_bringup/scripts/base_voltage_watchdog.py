@@ -12,11 +12,16 @@ import rospy
 from diagnostic_msgs.msg import DiagnosticArray
 from diagnostic_msgs.msg import DiagnosticStatus
 from diagnostic_msgs.msg import KeyValue
+import csv
+import os.path
+import datetime
 
 timer = 0
 warn_thresh = 48
 err_thresh = 46
-pub = []  #type:rospy.Publisher
+# pub = []  #type:rospy.Publisher
+filename = "/home/jesch/battery_info/voltage.csv"
+write_file = True
 
 def diagnostic_cb(msg):
     """
@@ -28,13 +33,25 @@ def diagnostic_cb(msg):
     """
 
     voltages = []
+    global timer
+    global pub
+    global err_thresh
+    global warn_thresh
 
     # Get all four voltages of the buses
     for component in msg.status:  # type: DiagnosticStatus
         if component.name == "/Other/omnidrive: boxy_omni_v1":
             for key in component.values: #type:KeyValue
                 if "bus voltage" in key.key:
-                    voltages.append(float(key.value))
+                    if "fl" in key.key:
+                        fl = float(key.value)
+                    elif "fr" in  key.key:
+                        fr = float(key.value)
+                    elif "bl" in  key.key:
+                        bl = float(key.value)
+                    elif "br" in  key.key:
+                        br = float(key.value)
+            voltages= [fl, fr, bl, br]
 
     if len(voltages) > 0:
 
@@ -45,10 +62,10 @@ def diagnostic_cb(msg):
             if (timer >= 60):
                 rospy.loginfo("Voltage low. Please charge the batteries soon. Voltage is down to " + str(min_voltage) + " V.")
                 timer = 0
-            pub.publish("Voltage is " + str(min_voltage) + " V and therefore low.")
+            pub.publish("Lowest voltage is " + str(min_voltage) + " V and therefore low.")
         if (min_voltage <= err_thresh):
             rospy.logerr("Voltage too low. Please charge the batteries. Voltage is down to " + str(min_voltage) + " V.")
-            pub.publish("Voltage is " + str(min_voltage) + " V and therefore critically low.")
+            pub.publish("Lowest voltage is " + str(min_voltage) + " V and therefore critically low.")
         if (min_voltage >= warn_thresh):
             timer += 1
             if (timer >= 300):
@@ -56,18 +73,35 @@ def diagnostic_cb(msg):
                 timer = 0
             pub.publish("Voltage is " + str(min_voltage) + " V and therefore okay.")
         
-        # Write data to CVS
 
+        if write_file:
+            ts = datetime.datetime.now().timestamp()
+
+            with open(filename, "a") as csvfile:
+                csvwriter = csv.writer(csvfile)
+                csvwriter.writerow([ts] + voltages)
+            csvfile.close()
 
 def init():
     """
     Function to start the node and connect to the topic.
     """
+
+    global pub
     rospy.init_node("battery_voltage_watchdog")
     rospy.loginfo("Connecting battery voltage watchdog to diagnostics.")
 
     rospy.Subscriber("/diagnostics_agg", DiagnosticArray, diagnostic_cb)
     pub = rospy.Publisher("/battery_status", String, queue_size=10)
+
+    if write_file:
+        # Write data to CVS
+        if not os.path.isfile(filename):
+            with open(filename, "w") as csvfile:
+                csvwriter = csv.writer(csvfile)
+                csvwriter.writerow(["Timestamp", "Bus Voltage FL", "Bus Voltage FR", "Bus Voltage BL", "Bus Voltage BR"])
+            csvfile.close()
+
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
 
