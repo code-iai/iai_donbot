@@ -21,7 +21,7 @@ timer = 0
 warn_thresh = 48
 err_thresh = 46
 # pub = []  #type:rospy.Publisher
-filename = "/home/jesch/battery_info/voltage.csv"
+filename = "/home/refills/battery_info/voltage.csv"
 write_file = True
 
 def diagnostic_cb(msg):
