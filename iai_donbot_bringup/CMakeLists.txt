@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(iai_donbot_bringup)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -155,8 +155,10 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-install(PROGRAMS
+catkin_install_python(PROGRAMS
   scripts/fake_state_publisher.py
+  scripts/base_voltage_watchdog.py
+  scripts/teleop_keyboard.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

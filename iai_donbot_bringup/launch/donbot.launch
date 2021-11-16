@@ -57,4 +57,6 @@
   <include file="$(find iai_donbot_bringup)/launch/aggregator.launch" if="$(arg with_aggregator)" />
 
   <include file="$(find iai_donbot_bringup)/launch/diagnostics.launch"/>
+
+  <node name="base_voltage_watchdog" pkg="iai_donbot_bringup" output="screen" type="base_voltage_watchdog.py" />
 </launch>
