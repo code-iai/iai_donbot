@@ -25,6 +25,7 @@
       <param name="odom_z_joint_name" value="odom_z_joint" />
       <param name="torso_present" value="false" />
       <param name="torso_ticks_to_m" value="10000000" />
+      <param name="cpu_core" value="11" />
     </node>
 
 

@@ -44,6 +44,6 @@
   <!-- <include file="$(find iai_donbot_bringup)/launch/nav_pcontroller.launch"/> -->
   <node name="fake_soft_runstop" pkg="iai_donbot_bringup" type="fake_runstop.sh"/>
   <!-- <include file="$(find iai_donbot_bringup)/launch/omni_pose_follower.launch"/> -->
-  <include file="$(find base_controller)/launch/base_controller_iai_donbot_real.launch"/>
+  <include file="$(find omni_pose_follower)/launch/omni_pose_follower_map_iai_donbot_real.launch"/>
 
 </launch>
