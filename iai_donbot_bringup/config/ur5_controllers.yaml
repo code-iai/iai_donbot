@@ -164,3 +164,4 @@ robot_status_controller:
    type: industrial_robot_status_controller/IndustrialRobotStatusController
    handle_name: industrial_robot_status_handle
    publish_rate: 10
+

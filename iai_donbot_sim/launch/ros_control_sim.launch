@@ -3,7 +3,10 @@
 
   <include file="$(find iai_donbot_sim)/launch/wsg_50_for_kinematic_sim.launch" />
 
-  <node pkg="tf2_ros" type="static_transform_publisher" name="fake_localization" output="screen" args="0 0 0 0 0 0 map odom" />
+  <node pkg="iai_naive_kinematics_sim" type="map_odom_transform_publisher.py" name="map_odom_transform_publisher" output="screen">
+    <param name="parent_frame" value="map"/>
+    <param name="child_frame" value="odom"/>
+  </node>
 
   <rosparam command="load" file="$(find iai_donbot_sim)/config/ros_control_sim.yaml" />
 
@@ -23,8 +26,6 @@
     <rosparam param="source_list">
     - base/joint_states
     - body/joint_states
-    - r_gripper/joint_states
-    - l_gripper/joint_states
     </rosparam>
     <rosparam param="zeros">
     'odom_x_joint': 0.0
