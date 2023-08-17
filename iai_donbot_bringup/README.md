@@ -10,7 +10,7 @@
 - unplug donbot from the power supply
 - take e-stop and unlock
 - ``roscore``
-- ``roslaunch iai_donbot_bringup donbot_with_sun_fingers.launch``
+- ``roslaunch iai_donbot_bringup donbo.launch``
 - start rviz and localize robot
 - on touchpad start remove control app (you may have to restart donbots launch file afterwards)
 - make sure you don't run out of battery! it damages them! They last about 6-8hours, depending on what you do. The launch file starts a watchdog and will print warnings, if you have to recharge.
